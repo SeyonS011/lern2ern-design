@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blockchain Token Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      color: #333;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #walletAddress {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #333;
+    }
+    #ownerPanel {
+      display: none;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 5px;
+      margin-top: 20px;
+      border: 1px solid #ddd;
+    }
+    #normalUserPanel {
+      display: none;
+      margin-top: 20px;
+    }
+    .transactions-container {
+      margin-top: 20px;
+    }
+    .transaction-item {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .tx-link {
+      color: #3498db;
+      text-decoration: none;
+      font-size: 12px;
+    }
+    .tx-link:hover {
+      text-decoration: underline;
+    }
+    .owner-badge {
+      background-color: #e74c3c;
+      color: white;
+      padding: 3px 8px;
+      border-radius: 10px;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+    #walletMessage {
+      color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <h1>Blockchain Token Tracker</h1>
+  <p>Connect your MetaMask wallet to track token events.</p>
+  <p id="walletMessage"></p>
+  
+  <button id="connectButton">Connect Wallet</button>
+  <p id="walletAddress">Not connected</p>
+
+  <!-- Owner Panel - Only visible to the owner -->
+  <div id="ownerPanel">
+    <h2>Owner Dashboard <span class="owner-badge">OWNER</span></h2>
+    <p>As the owner, you can see all transactions across the network.</p>
+    
+    <div class="search-container" style="margin: 20px 0; display: flex; gap: 10px;">
+      <input type="text" id="addressSearch" placeholder="Enter wallet address to filter" style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+      <button id="searchButton" style="background-color: #3498db;">Search</button>
+      <button id="resetButton" style="background-color: #95a5a6;">Reset</button>
+    </div>
+    
+    <div class="transactions-container">
+      <h3>Transactions <small id="transactionStats"></small></h3>
+      <ul id="transactionsList" style="list-style-type: none; padding: 0;">
+        <!-- Transactions will be loaded here -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- Normal User Panel - Visible to non-owners -->
+  <div id="normalUserPanel">
+    <h2>Your Token Events</h2>
+    <p>You will receive notifications when token events related to your account occur.</p>
+    <p>Note: Only the contract owner can see all transactions.</p>
+  </div>
+
+  <!-- Load Web3.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.8.2/dist/web3.min.js"></script>
+  <!-- Load our app script -->
+  <script src="index.js"></script>
+</body>
+</html>

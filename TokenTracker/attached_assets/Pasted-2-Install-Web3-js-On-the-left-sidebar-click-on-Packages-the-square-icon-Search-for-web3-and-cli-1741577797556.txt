@@ -1,0 +1,93 @@
+2. Install Web3.js
+On the left sidebar, click on Packages (the square icon).
+Search for web3 and click Install to add Web3.js to your project.
+3. Sample index.js Template for Blockchain Interaction
+Once you have your Node.js project and Web3.js installed, you can set up your app to connect to MetaMask, interact with the Ethereum blockchain, and track transactions.
+
+Here’s a simple template for you to start with:
+
+index.js (Node.js)
+javascript
+Copy
+Edit
+// Import Web3.js
+const Web3 = require('web3');
+
+// Set up Web3 with the provider from MetaMask
+const web3 = new Web3(window.ethereum);
+let contract;
+let account;
+
+// The address of your deployed token contract and the ABI
+const tokenAddress = 'YOUR_CONTRACT_ADDRESS'; // Replace with your token contract address
+const tokenABI = [ /* Your token contract ABI here */ ];
+
+// Connect to MetaMask
+async function connectWallet() {
+  try {
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    account = accounts[0]; // Get the user's wallet address
+    console.log('Connected account:', account);
+    contract = new web3.eth.Contract(tokenABI, tokenAddress); // Set up the contract instance
+    document.getElementById("walletAddress").innerText = `Connected: ${account}`;
+    listenToEvents();
+  } catch (error) {
+    console.error('Error connecting to MetaMask:', error);
+  }
+}
+
+// Listen to Transfer, Mint, and Burn events
+function listenToEvents() {
+  // Listening to Transfer events
+  contract.events.Transfer({
+    fromBlock: 'latest', // Start listening from the latest block
+  })
+  .on('data', (event) => {
+    console.log('Transfer Event:', event);
+    alert(`Transfer from: ${event.returnValues.from}, to: ${event.returnValues.to}, amount: ${web3.utils.fromWei(event.returnValues.value, 'ether')} tokens`);
+  })
+  .on('error', console.error);
+
+  // Listening to Mint events (if your contract emits Mint events)
+  contract.events.Mint({
+    fromBlock: 'latest',
+  })
+  .on('data', (event) => {
+    console.log('Mint Event:', event);
+    alert(`Minted ${web3.utils.fromWei(event.returnValues.amount, 'ether')} tokens to: ${event.returnValues.to}`);
+  })
+  .on('error', console.error);
+
+  // Listening to Burn events (if your contract emits Burn events)
+  contract.events.Burn({
+    fromBlock: 'latest',
+  })
+  .on('data', (event) => {
+    console.log('Burn Event:', event);
+    alert(`Burned ${web3.utils.fromWei(event.returnValues.amount, 'ether')} tokens from: ${event.returnValues.from}`);
+  })
+  .on('error', console.error);
+}
+
+// HTML Interaction to connect wallet
+document.getElementById('connectButton').addEventListener('click', connectWallet);
+index.html (Basic UI)
+html
+Copy
+Edit
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blockchain Token Tracker</title>
+</head>
+<body>
+  <h1>Blockchain Token Tracker</h1>
+  <button id="connectButton">Connect Wallet</button>
+  <p id="walletAddress">Not connected</p>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.6/web3.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
