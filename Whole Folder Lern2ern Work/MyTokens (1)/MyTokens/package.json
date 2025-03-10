@@ -1,0 +1,22 @@
+{
+  "name": "erc20-token-interface",
+  "version": "1.0.0",
+  "description": "A simple interface to interact with ERC-20 tokens",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ethereum",
+    "web3",
+    "token"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^18.0.6",
+    "express": "^4.21.2",
+    "web3": "^1.8.0"
+  }
+}

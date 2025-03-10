@@ -1,0 +1,141 @@
+
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 10px;
+}
+
+.card-header {
+  background-color: #f1f3f5;
+  border-bottom: 1px solid #e9ecef;
+}
+
+#walletStatus {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#walletAddress {
+  font-size: 14px;
+  word-break: break-all;
+}
+
+.transaction-item {
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: white;
+  transition: transform 0.2s;
+}
+
+.transaction-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.transaction-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.transaction-type {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.type-transfer {
+  background-color: #e3f2fd;
+  color: #0d6efd;
+}
+
+.type-mint {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.type-burn {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.address {
+  font-family: monospace;
+  font-size: 14px;
+  word-break: break-all;
+}
+
+.amount {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.timestamp {
+  color: #6c757d;
+  font-size: 14px;
+}
+body {
+  background-color: #f8f9fa;
+}
+
+.transaction-item {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.transaction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.transaction-type {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.type-transfer {
+  background-color: #e7f5ff;
+  color: #1971c2;
+}
+
+.type-mint {
+  background-color: #ebfbee;
+  color: #2b8a3e;
+}
+
+.type-burn {
+  background-color: #fff5f5;
+  color: #c92a2a;
+}
+
+.address {
+  font-family: monospace;
+  word-break: break-all;
+}
+
+.amount {
+  font-weight: bold;
+  color: #1864ab;
+}
+
+.timestamp {
+  color: #666;
+  font-size: 0.9rem;
+}
